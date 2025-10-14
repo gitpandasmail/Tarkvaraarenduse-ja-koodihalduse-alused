@@ -1,6 +1,2 @@
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-
-*.Rproj
+bash_eksperiment/data/
+bash_eksperiment/results/
