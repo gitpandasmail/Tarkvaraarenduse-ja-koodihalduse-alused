@@ -239,6 +239,8 @@ See tagastab ainult veerud `product_name` ja `list_price`, jättes ülejäänud 
 
 ```sql
 -- kirjuta oma vastus siia
+SELECT * 
+FROM customers;
 
 ```
 
@@ -274,6 +276,9 @@ See võimaldab meil kuvada kõige kallimad tooted esimesena või vastupidi.
 
 ```sql
 -- kirjuta oma vastus siia
+SELECT *
+FROM customers
+ORDER BY last_name ASC;
 
 ```
 
@@ -309,6 +314,10 @@ See päring tagastab 10 kõige kallimat toodet.
 
 ```sql
 -- kirjuta oma vastus siia
+SELECT *
+FROM sales.orders
+ORDER BY order_date DESC
+LIMIT 15;
 
 ```
 
@@ -408,6 +417,9 @@ LIMIT 10;
 
 ```sql
 -- kirjuta oma vastus siia
+SELECT *
+FROM customers
+WHERE city = 'New York';
 
 ```
 
@@ -466,6 +478,11 @@ ORDER BY average_price DESC;
 
 ```sql
 -- kirjuta oma vastus siia
+SELECT staff_id, COUNT(*) AS order_count
+FROM sales.orders
+GROUP BY staff_id
+ORDER BY order_count DESC
+LIMIT 5;
 
 ```
 
@@ -536,7 +553,14 @@ ORDER BY average_price DESC;
 
 ```sql
 -- kirjuta oma vastus siia
-
+SELECT 
+    CONCAT(c.first_name, ' ', c.last_name) AS customer_name,
+    COUNT(o.order_id) AS order_count
+FROM sales.customers c
+LEFT JOIN sales.orders o
+    ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.first_name, c.last_name
+ORDER BY order_count DESC;
 ```
 
 ---
@@ -586,6 +610,18 @@ ORDER BY average_price DESC;
 
 ```sql
 -- kirjuta oma vastus siia
+SELECT 
+    o.order_id,
+    CONCAT(c.first_name, ' ', c.last_name) AS customer_name,
+    COUNT(DISTINCT oi.product_id) AS distinct_products
+FROM sales.orders o
+JOIN sales.customers c
+    ON o.customer_id = c.customer_id
+JOIN sales.order_items oi
+    ON o.order_id = oi.order_id
+GROUP BY o.order_id, c.first_name, c.last_name
+HAVING SUM(oi.quantity) > 8
+ORDER BY o.order_id ASC;
 
 ```
 
