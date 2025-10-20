@@ -1,3 +1,5 @@
+# kodutöö lahendus
+
 # Uus weebiarendus kasutades Dockerit ja Django raamistikku
 
 Selles juhendis näitan, kuidas seadistada lihtsat Django projekti, mis jookseb Docker konteineris. Django on populaarne Pythonil põhinev veebiraamistik, mis võimaldab kiiresti arendada veebirakendusi.
