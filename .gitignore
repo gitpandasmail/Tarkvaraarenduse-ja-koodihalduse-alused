@@ -1,2 +1,17 @@
 bash_eksperiment/data/
 bash_eksperiment/results/
+# R data files
+*.RData
+*.rda
+*.RDS
+
+# R history files
+*.Rhistory
+
+# R markdown cache
+.Rproj.user/
+.Rhistory
+.RData
+
+# Optional: ignore all hidden files (if needed)
+.* 
